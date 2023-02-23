@@ -33,12 +33,11 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
         if self.path == '/write':
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)
-            redishost = "redis"
-            redisclient = redis.Redis(host=redishost)
+            redisclient = redis.Redis(host='localhost', port=6379)
             redisclient.set("SHAREDKEY",post_data.decode('utf-8'))
 
 
 
 handler_object = RequestHandler
-server = socketserver.TCPServer(("", 8081), handler_object)
+server = socketserver.TCPServer(("", 8000), handler_object)
 server.serve_forever()

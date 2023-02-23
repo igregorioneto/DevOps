@@ -1,6 +1,5 @@
-FROM python:3.9
-WORKDIR /app
-ADD . /app
-EXPOSE 8081
-CMD ["python"]
-ENTRYPOINT ["main.py"]
+FROM python:3.7-alpine
+WORKDIR /app-py
+ADD . .
+EXPOSE 8000
+CMD ["python", "./main.py"]
